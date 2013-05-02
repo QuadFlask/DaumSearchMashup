@@ -1,4 +1,4 @@
-var API_URL = "http://apis.daum.net/search/vclip?apikey=f3330b2b08327bc2ed0806b5bc153de024c65e29&q={query}&result=5&pageno={pageno}&output=json&callback=?";
+
 
 function rhtmlspecialchars(str) {
 	if (typeof(str) == "string") {
@@ -12,9 +12,40 @@ function rhtmlspecialchars(str) {
 }
 var pageno = 1;
 
+
 $(document).ready(function() {
+	
+	var searchTypeIndex = 0;
+
+	var callbackData = function(data){
+		console.log(data);
+	};
+
 	var searchQuery = function(){
-		console.log(1111);
+
+		var query = $('#query').val();
+
+		var url = _.template(API_URL, {
+			searchTypeUrl :SEARCH_API_URL[searchTypeIndex],
+			apikey : API_KEY,
+			query : query,
+			pageno : 1
+		});
+
+		_log(url);
+
+		var data = {list:[
+			{title:"", link:""},
+			{title:"", link:""},
+			{title:"", link:""},
+			{title:"", link:""},
+			{title:"", link:""},
+		]};
+
+		$('.list .box').html(_.tamplate($('#listTamplate').html(), data));
+
+		$.getJSON(url, callbackData);
+
 		return false;
 	};
 
