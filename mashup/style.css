@@ -1,0 +1,8 @@
+.wrapper { width:800px;margin: 10px auto 0 auto}
+.wrapper .search {
+	background: #eee; 
+	padding: 20px; 
+	border-radius: 20px}
+.input-append {width: 90%}
+#query {width: 80%}
+.tab {margin: 20px 0}
